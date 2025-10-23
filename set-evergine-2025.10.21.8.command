@@ -11,11 +11,21 @@ from pathlib import Path
 
 root = Path(sys.argv[1])
 version = sys.argv[2]
-pattern = re.compile(r'(<PackageReference\s+Include="Evergine[^"]*"\s+Version=")[^"]+(")')
+pattern = re.compile(
+    r'(?P<prefix><PackageReference\s+Include="(?P<name>Evergine[^"]*)"\s+Version=")'
+    r'(?P<value>[^"]+)'
+    r'(?P<suffix>")'
+)
 
 for csproj in root.rglob("*.csproj"):
     text = csproj.read_text(encoding="utf-8")
-    updated, count = pattern.subn(rf"\1{version}\2", text)
+    def repl(match):
+        name = match.group("name")
+        if "Draco" in name:
+            return match.group(0)
+        return f"{match.group('prefix')}{version}{match.group('suffix')}"
+
+    updated, count = pattern.subn(repl, text)
     if count > 0:
         csproj.write_text(updated, encoding="utf-8")
         print(f"Updated {csproj}")
