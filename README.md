@@ -2,6 +2,39 @@
 
 This codebase demonstrates a memory leak in Evergine where GLB resources don't appear to be released when they are removed from a scene.
 
+## Details
+
+In Evergine, when loading and then unloading GLB assets at runtime, the memory usage of the app constantly grows.
+
+Loading a GLB:
+
+```
+var assetsService = Application.Current.Container.Resolve<AssetsService>();
+
+Model model = null;
+using (var fileStream = File.OpenRead(glbFilePath))
+{
+    model = await Evergine.Runtimes.GLB.GLBRuntime.Instance.Read(fileStream, CustomMaterialAssigner);
+}
+
+var entity = model.InstantiateModelHierarchy(assetsService);
+```
+
+Unloading a GLB:
+
+```
+var glbAssets = scene.Managers.EntityManager.FindAllByTag(EntityTags.GlbAsset).ToList();
+
+foreach (var asset in glbAssets)
+{
+  scene.Managers.EntityManager.Remove(asset);
+}
+```
+
+AFter several large GLB models, the app will be killed by the operating system.
+
+## Steps To Reproduce
+
 To see the memory leak:
 
  1. Launch the app with the debugger attached. This can be done on a device or in the iOS simulator
@@ -10,6 +43,9 @@ To see the memory leak:
  4. Tap on another model to download and load a new GLB. The memory logger will show a *significant* increase in memory.
  5. If testing on device, the app will crash after opening 3-5 models.
 
+
+## Additional Details
+
 Please note that each model:
 
  * Has a single 8K jpeg texture.
@@ -17,7 +53,7 @@ Please note that each model:
 
 
 <details>
-<summary>Sample Logs</summary>
+<summary>Sample Logs (Evergine v2025.10.21.8)</summary>
 ```
 2025-10-23 12:55:33.940942+1100 GlbMemLeakDemo[83947:4268397] Start.GlbAssetService.RemoveAll|324932d3-aad7-4192-a752-9558987cf208: 177.9MB
 2025-10-23 12:55:33.941627+1100 GlbMemLeakDemo[83947:4268397] End.GlbAssetService.RemoveAll|324932d3-aad7-4192-a752-9558987cf208: 178.3MB (+320KB)
