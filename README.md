@@ -54,6 +54,7 @@ Please note that each model:
 
 <details>
 <summary>Sample Logs (Evergine v2025.10.21.8)</summary>
+
 ```
 2025-10-23 12:55:33.940942+1100 GlbMemLeakDemo[83947:4268397] Start.GlbAssetService.RemoveAll|324932d3-aad7-4192-a752-9558987cf208: 177.9MB
 2025-10-23 12:55:33.941627+1100 GlbMemLeakDemo[83947:4268397] End.GlbAssetService.RemoveAll|324932d3-aad7-4192-a752-9558987cf208: 178.3MB (+320KB)
@@ -112,6 +113,7 @@ Please note that each model:
 2025-10-23 12:57:38.155636+1100 GlbMemLeakDemo[83947:4268397] The glb asset 'Torbole- Torbole.glb' has been loaded. Evergine entity: 545ccc8b-4a8d-4fbe-9b74-bb7b8a039c3a
 2025-10-23 12:57:38.155770+1100 GlbMemLeakDemo[83947:4268397] End.GlbAssetService.LoadGlbAsset|Torbole: 3.2GB (+0.7GB)
 ```
+
 </details>
  
 
