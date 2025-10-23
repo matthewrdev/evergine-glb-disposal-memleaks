@@ -46,10 +46,17 @@ To see the memory leak:
 
 ## Additional Details
 
-Please note that each model:
+Please note that each model in this sample:
 
  * Has a single 8K jpeg texture.
  * Has 500k polys per model.
+ * Has draco compression.
+
+These are real-world models that we are using in Red-Point. Every model used by our app has the same specs for our 'HD' versions.
+
+
+To monitor memory usage, the app taps into the Jetsam process managers memory reporting and logs it via `MemoryUsageTracker`.
+
 
 
 <details>
