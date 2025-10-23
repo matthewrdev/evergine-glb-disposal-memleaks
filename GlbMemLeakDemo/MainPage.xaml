@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:evergine="clr-namespace:Redpoint.Mobile.Evergine"
+             x:Class="GlbMemLeakDemo.MainPage">
+    <Grid RowDefinitions="*,Auto"
+          ColumnDefinitions="1*,1*,1*">
+        
+        
+        <evergine:EvergineView x:Name="evergineView" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+            HandlerProperties.DisconnectPolicy="Manual"/>
+        
+        <VerticalStackLayout x:Name="loadingIndicatorContainer" 
+                             Grid.Row="0"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="3"
+                             HorizontalOptions="Fill" VerticalOptions="Center">
+            
+            <ProgressBar x:Name="progressBar" HorizontalOptions="Fill"/>
+            
+            <Label x:Name="label" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+            
+        </VerticalStackLayout>
+        
+        
+        <Label BackgroundColor="AliceBlue" x:Name="loadedModelabel" HorizontalOptions="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="End" VerticalTextAlignment="End"></Label>
+        
+        <Button Margin="4,0" x:Name="buttonOne" Text="Los Huasamacos Del Sur" Grid.Row="1" Grid.Column="0" Clicked="Button_OnClicked"/>
+        
+        <Button Margin="0,0 " x:Name="buttonTwo" Text="Placca Nevruz" Grid.Row="1" Grid.Column="1" Clicked="Button_OnClicked"/>
+        
+        <Button Margin="4,0 " x:Name="buttonThree" Text="Torbole" Grid.Row="1" Grid.Column="2" Clicked="Button_OnClicked"/>
+        
+    </Grid>
+
+</ContentPage>

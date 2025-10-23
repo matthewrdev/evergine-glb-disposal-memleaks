@@ -1,0 +1,108 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="../Codesign.props" Condition="Exists('../Codesign.props')" />
+
+    <PropertyGroup>
+        <TargetFrameworks>net9.0-android;net9.0-ios</TargetFrameworks>
+        
+        <OutputType>Exe</OutputType>
+        <RootNamespace>GlbMemLeakDemo</RootNamespace>
+        <UseMaui>true</UseMaui>
+        <SingleProject>true</SingleProject>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <!-- Display name -->
+        <ApplicationTitle>GlbMemLeakDemo</ApplicationTitle>
+
+        <!-- App Identifier -->
+        <ApplicationId>com.companyname.glbmemleakdemo</ApplicationId>
+
+        <!-- Versions -->
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <ApplicationVersion>1</ApplicationVersion>
+
+        <!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
+        <WindowsPackageType>None</WindowsPackageType>
+
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+
+
+        <!-- Evergine -->
+        <EvergineAssetContent>../Content</EvergineAssetContent>
+        <EvergineProjectFilePath>../Redpoint.SceneViewer.weproj</EvergineProjectFilePath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- App Icon -->
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4"/>
+
+        <!-- Splash Screen -->
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128"/>
+
+        <!-- Images -->
+        <MauiImage Include="Resources\Images\*"/>
+        <MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185"/>
+
+        <!-- Custom Fonts -->
+        <MauiFont Include="Resources\Fonts\*"/>
+
+        <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Redpoint.SceneViewer\Redpoint.SceneViewer.csproj" />
+    </ItemGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-ios|AnyCPU'">
+        <CreatePackage>false</CreatePackage>
+        <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+        <CodesignKey Condition="'$(CodesignKey)'==''">$CodeSignKey$</CodesignKey>
+        <CodesignTeamId Condition="'$(CodesignTeamId)'==''">$TeamId$</CodesignTeamId>
+        <CodesignProvision Condition="'$(CodesignProvision)'==''">$Provision$</CodesignProvision>
+    </PropertyGroup>
+
+
+    <!-- Evergine 3D Engine -->
+    <Choose>
+        <When Condition="'$(TargetFramework)' == 'net9.0-android'">
+            <PropertyGroup>
+                <EvergineProfileName>#MAUI#Android</EvergineProfileName>
+            </PropertyGroup>
+            <ItemGroup>
+                <PackageReference Include="Evergine.Android" Version="2025.10.21.8" />
+                <PackageReference Include="Evergine.Targets" Version="2025.10.21.8" />
+                <PackageReference Include="Evergine.Targets.Maui" Version="2025.10.21.8" />
+                <PackageReference Include="Evergine.Vulkan" Version="2025.10.21.8" />
+            </ItemGroup>
+            <ItemGroup>
+                <TrimmerRootDescriptor Include="Platforms\Android\linker.xml" />
+            </ItemGroup>
+        </When>
+        <When Condition="'$(TargetFramework)' == 'net9.0-ios'">
+            <PropertyGroup>
+                <EvergineProfileName>#MAUI#iOS</EvergineProfileName>
+                <!--
+                            This workarounds the Metal and Maui errors
+                            arg store type not yet supported (Metal) https://github.com/dotnet/runtime/issues/82976
+                            Maui Release IOS XamlParseException https://github.com/dotnet/maui/issues/12519
+                        -->
+                <MtouchInterpreter>-all</MtouchInterpreter>
+            </PropertyGroup>
+            <ItemGroup>
+                <PackageReference Include="Evergine.iOS" Version="2025.10.21.8" />
+                <PackageReference Include="Evergine.Metal" Version="2025.10.21.8" />
+                <PackageReference Include="Evergine.Targets" Version="2025.10.21.8" />
+                <PackageReference Include="Evergine.Targets.iOS" Version="2025.10.21.8" />
+            </ItemGroup>
+        </When>
+    </Choose>
+
+</Project>

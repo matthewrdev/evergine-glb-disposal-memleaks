@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redpoint.SceneViewer", "Redpoint.SceneViewer\Redpoint.SceneViewer.csproj", "{7FEA15E8-1592-492E-B809-E2C66F4D96B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlbMemLeakDemo", "GlbMemLeakDemo\GlbMemLeakDemo.csproj", "{FFBA7B64-CD8D-458D-846C-D5FE912C999F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7FEA15E8-1592-492E-B809-E2C66F4D96B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FEA15E8-1592-492E-B809-E2C66F4D96B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FEA15E8-1592-492E-B809-E2C66F4D96B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FEA15E8-1592-492E-B809-E2C66F4D96B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFBA7B64-CD8D-458D-846C-D5FE912C999F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFBA7B64-CD8D-458D-846C-D5FE912C999F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFBA7B64-CD8D-458D-846C-D5FE912C999F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFBA7B64-CD8D-458D-846C-D5FE912C999F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

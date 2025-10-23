@@ -10,6 +10,7 @@
 *.userosscache
 *.sln.docstates
 *.env
+Codesign.props
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -416,3 +417,8 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+
+# Rider Working Folder
+.idea/
+Directory.Build.props

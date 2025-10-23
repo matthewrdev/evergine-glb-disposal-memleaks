@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0-android;net9.0-ios</TargetFrameworks>
+    <GenerateEvergineContent>True</GenerateEvergineContent>
+    <GenerateEvergineAssets>False</GenerateEvergineAssets>
+    <GenerateEvergineScenesCode>True</GenerateEvergineScenesCode>
+    <RootNamespace>Redpoint.SceneViewer</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Evergine.Bindings.Draco" Version="2025.10.14.20" />
+    <PackageReference Include="Evergine.Common" Version="2025.10.21.8" />
+    <PackageReference Include="Evergine.Components" Version="2025.10.21.8" />
+    <PackageReference Include="Evergine.Framework" Version="2025.10.21.8" />
+    <PackageReference Include="Evergine.Mathematics" Version="2025.10.21.8" />
+    <PackageReference Include="Evergine.Bullet" Version="2025.10.21.8" />
+    <PackageReference Include="Evergine.Runtimes.GLB" Version="2025.10.21.8" />
+    <PackageReference Include="Evergine.Targets" Version="2025.10.21.8" />
+    <PackageReference Include="Evergine.CodeScenes" Version="2025.10.21.8" />
+  </ItemGroup>
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <NullabilityInfoContextSupport>true</NullabilityInfoContextSupport>
+  </PropertyGroup>
+</Project>
